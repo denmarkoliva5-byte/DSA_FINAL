@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DSA Showcase — Algorithms & Data Structures</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1>DSA Showcase</h1>
+      <button id="menuBtn" class="menu-btn" aria-label="menu">☰</button>
+      <nav id="mainNav" class="nav" role="navigation">
+        <a href="#home">Home</a>
+        <a href="#algorithms">Algorithms</a>
+        <a href="#pseudocode">Pseudocode</a>
+        <a href="#codes">Code</a>
+        <a href="#crud">CRUD</a>
+        <a href="#download">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  
+
+    <section id="algorithms" class="card">
+      <h2>10 Algorithms</h2>
+      <ol>
+        <li>Bubble Sort</li>
+        <li>Selection Sort</li>
+        <li>Insertion Sort</li>
+        <li>Merge Sort</li>
+        <li>Quick Sort</li>
+        <li>Linear Search</li>
+        <li>Binary Search</li>
+        <li>Breadth-First Search (BFS)</li>
+        <li>Depth-First Search (DFS)</li>
+        <li>Fibonacci (iterative)</li>
+      </ol>
+    </section>
+
+    <section id="pseudocode" class="card">
+      <h2>10 Pseudocodes</h2>
+      <pre id="pseudocode-block" class="code">
+1. BUBBLE SORT
+FOR i = 0 TO n-2
+  FOR j = 0 TO n-2-i
+    IF A[j] > A[j+1] SWAP A[j], A[j+1]
+
+2. SELECTION SORT
+FOR i = 0 TO n-2
+  min = i
+  FOR j = i+1 TO n-1
+    IF A[j] < A[min] min = j
+  SWAP A[i], A[min]
+
+3. INSERTION SORT
+FOR i = 1 TO n-1
+  key = A[i]; j = i-1
+  WHILE j >= 0 AND A[j] > key
+    A[j+1] = A[j]; j = j-1
+  A[j+1] = key
+
+4. MERGE SORT
+FUNCTION mergesort(A)
+  IF len(A) <= 1 RETURN A
+  mid = len(A)//2
+  L = mergesort(A[:mid]); R = mergesort(A[mid:])
+  RETURN merge(L,R)
+
+5. QUICK SORT
+FUNCTION quicksort(A, lo, hi)
+  IF lo < hi
+    p = partition(A, lo, hi)
+    quicksort(A, lo, p-1)
+    quicksort(A, p+1, hi)
+
+6. LINEAR SEARCH
+FOR i = 0 TO n-1
+  IF A[i] == key RETURN i
+RETURN -1
+
+7. BINARY SEARCH (iterative)
+lo=0; hi=n-1
+WHILE lo <= hi
+  mid=(lo+hi)//2
+  IF A[mid]==key RETURN mid
+  IF A[mid] < key lo = mid+1 ELSE hi = mid-1
+RETURN -1
+
+8. BFS (graph)
+QUEUE q; mark start visited; enqueue(start)
+WHILE q not empty
+  u = dequeue()
+  FOR v in neighbors(u)
+    IF not visited(v) mark visited(v); enqueue(v)
+
+9. DFS (recursive)
+FUNCTION dfs(u)
+  mark visited(u)
+  FOR v in neighbors(u)
+    IF not visited(v) dfs(v)
+
+10. FIBONACCI (iterative)
+a=0; b=1
+FOR i = 0 TO n-1
+  a, b = b, a+b
+RETURN a
+      </pre>
+      <div class="buttons-row">
+        <button id="copyPseudoBtn">Copy Pseudocode</button>
+        <button id="exportPseudoBtn">Export Pseudocode (.txt)</button>
+      </div>
+    </section>
+
+    <section id="codes" class="card">
+      <h2>Code Implementations</h2>
+      <div class="controls">
+        <label for="lang">Language:</label>
+        <select id="lang">
+          <option value="python" selected>Python</option>
+          <option value="cpp">C++</option>
+        </select>
+        <button id="copyCodeBtn">Copy All Code</button>
+      </div>
+
+      <h3>Array</h3>
+      <pre id="code-array" class="code"></pre>
+
+      <h3>Stacks (infix→postfix, infix→prefix, postfix eval)</h3>
+      <pre id="code-stack" class="code"></pre>
+
+      <h3>Queue</h3>
+      <pre id="code-queue" class="code"></pre>
+
+      <h3>Trees (inorder, preorder, postorder)</h3>
+      <pre id="code-tree" class="code"></pre>
+    </section>
+
+    <section id="crud" class="card">
+      <h2>CRUD — Student Records (localStorage)</h2>
+      <form id="crudForm" class="crud-form">
+        <input type="hidden" id="editId">
+        <label for="nameInput">Name</label>
+        <input id="nameInput" type="text" required placeholder="Student name">
+        <label for="courseInput">Course</label>
+        <input id="courseInput" type="text" required placeholder="Course / Major">
+        <div class="buttons-row">
+          <button type="submit" id="saveBtn">Save</button>
+          <button type="button" id="resetBtn">Clear</button>
+          <button type="button" id="exportBtn">Export JSON</button>
+          <label for="importFile" class="import-label">Import JSON<input id="importFile" type="file" accept=".json" style="display:none"></label>
+        </div>
+      </form>
+
+      <h3>Students</h3>
+      <table id="crudTable">
+        <thead>
+          <tr><th>Name</th><th>Course</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="download" class="card">
+      <h2>Download / Deploy</h2>
+      <p>To deploy on GitHub Pages: push these files to a public repo and enable Pages (branch: main / folder: root). Works on Netlify too (drag & drop).</p>
+      <div class="buttons-row">
+        <button id="downloadAllBtn">Download All Files (single .zip not created — downloads files one by one)</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>RUSH GROUP</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
